@@ -3,7 +3,7 @@
   "app_id": "",
   "proxies": [
     {
-      "path": "/api",
+      "path": "http://46.101.60.116:8080/api",
       "proxyUrl": "sample-auth/ionic.project/api"
     }
   ]
