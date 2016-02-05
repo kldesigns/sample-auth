@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.devdacticrestauth917598" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>devdactic-rest-auth</name>
+<widget id="com.ionicframework.auth-test" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap = "http://phonegap.com/ns/1.0" versionCode =   "1">
+  <name>rest-auth</name>
   <description>
-        An Ionic Framework and Cordova project.
+        A Kiwilime Designs Sample Project
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="doug.cabot@kiwilimedesigns.com" href="http://kiwilimedesigns.com/">
+      Kiwilime Designs
     </author>
   <content src="index.html"/>
   <access origin="*"/>
