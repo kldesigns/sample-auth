@@ -17,4 +17,8 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+<feature name="debug-server" required="true">
+    <param name="domain" value="http://46.101.60.116:8081"/>
+    <param name="key" value="rest-auth"/>
+  </feature>
 </widget>
