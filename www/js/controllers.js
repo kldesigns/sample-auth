@@ -1,6 +1,6 @@
-angular.module('starter')
+angular.module('app.controllers', [])
 
-.controller('LoginCtrl', function($scope, AuthService, $ionicPopup, $state) {
+.controller('loginCtrl', function($scope, AuthService, $ionicPopup, $state) {
   $scope.user = {
     name: '',
     password: ''
@@ -18,6 +18,48 @@ angular.module('starter')
   };
 })
 
+.controller('homeCtrl', function($scope, AuthService, API_ENDPOINT, $http, $state) {
+  $scope.destroySession = function() {
+    AuthService.logout();
+  };
+
+  $scope.getInfo = function() {
+    $http.get(API_ENDPOINT.url + '/memberinfo').then(function(result) {
+      $scope.memberinfo = result.data.msg;
+    });
+  };
+
+  $scope.logout = function() {
+    AuthService.logout();
+    $state.go('login');
+  };
+})
+   
+.controller('clockOnOffCtrl', function($scope) {
+
+})
+   
+.controller('travelLogBookCtrl', function($scope) {
+
+})
+   
+.controller('clockOffCtrl', function($scope) {
+
+})
+   
+.controller('changePasswordCtrl', function($scope) {
+
+})
+   
+.controller('reviewAndSubmitCtrl', function($scope) {
+
+})
+   
+.controller('timesheetCtrl', function($scope) {
+
+})
+
+
 .controller('RegisterCtrl', function($scope, AuthService, $ionicPopup, $state) {
   $scope.user = {
     name: '',
@@ -26,7 +68,7 @@ angular.module('starter')
 
   $scope.signup = function() {
     AuthService.register($scope.user).then(function(msg) {
-      $state.go('outside.login');
+      $state.go('login');
       var alertPopup = $ionicPopup.alert({
         title: 'Register success!',
         template: msg
@@ -53,14 +95,14 @@ angular.module('starter')
 
   $scope.logout = function() {
     AuthService.logout();
-    $state.go('outside.login');
+    $state.go('login');
   };
 })
 
 .controller('AppCtrl', function($scope, $state, $ionicPopup, AuthService, AUTH_EVENTS) {
   $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
     AuthService.logout();
-    $state.go('outside.login');
+    $state.go('login');
     var alertPopup = $ionicPopup.alert({
       title: 'Session Lost!',
       template: 'Sorry, You have to login again.'

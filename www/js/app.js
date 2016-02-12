@@ -1,6 +1,6 @@
-angular.module('starter', ['ionic'])
+angular.module('app', ['ionic', 'app.constants', 'app.controllers', 'app.routes', 'app.services', 'app.directives'])
 
-.config(function($stateProvider, $urlRouterProvider) {
+/*.config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
   .state('outside', {
@@ -86,15 +86,28 @@ angular.module('starter', ['ionic'])
     });
 
   $urlRouterProvider.otherwise('/outside/login');
+})*/
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if(window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
+    }
+  });
 })
 
 .run(function ($rootScope, $state, AuthService, AUTH_EVENTS) {
   $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
     if (!AuthService.isAuthenticated()) {
       console.log(next.name);
-      if (next.name !== 'outside.login' && next.name !== 'outside.register') {
+      if (next.name !== 'login' && next.name !== 'outside.register') {
         event.preventDefault();
-        $state.go('outside.login');
+        $state.go('login');
       }
     }
   });

@@ -1,4 +1,12 @@
-angular.module('starter')
+angular.module('app.services', [])
+
+/*.factory('BlankFactory', [function(){
+
+}])
+
+.service('BlankService', [function(){
+
+}])*/
 
 .service('AuthService', function($q, $http, API_ENDPOINT) {
   var LOCAL_TOKEN_KEY = 'yourTokenKey';
