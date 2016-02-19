@@ -64,6 +64,19 @@ angular.module('app.services', [])
       });
     });
   };
+  
+  var updatepass = function(user) {
+  return $q(function(resolve, reject) {
+      $http.post(API_ENDPOINT.url + '/updatepass', user).then(function(result) {
+        if (result.data.success) {
+          storeUserCredentials(result.data.token);
+          resolve(result.data.msg);
+        } else {
+          reject(result.data.msg);
+        }
+      });
+    });
+  };
 
   var logout = function() {
     destroyUserCredentials();
@@ -74,6 +87,7 @@ angular.module('app.services', [])
   return {
     login: login,
     register: register,
+    updatepass: updatepass,
     logout: logout,
     isAuthenticated: function() {return isAuthenticated;},
   };

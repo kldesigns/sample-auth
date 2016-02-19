@@ -3,7 +3,8 @@ angular.module('app.controllers', [])
 .controller('loginCtrl', function($scope, AuthService, $ionicPopup, $state) {
   $scope.user = {
     name: '',
-    password: ''
+    password: '',
+    email: ''
   };
 
   $scope.login = function() {
@@ -47,8 +48,29 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('changePasswordCtrl', function($scope) {
-
+.controller('changePasswordCtrl', function($scope, AuthService, AUTH_EVENTS, API_ENDPOINT, $http, $state, $ionicPopup) {
+    $scope.user = {
+      password:  '',
+      currpassword:  ''
+    };
+    $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
+    AuthService.logout();
+    $state.go('login');
+    var alertPopup = $ionicPopup.alert({
+      title: 'Session Lost!',
+      template: 'Sorry, You have to login again.'
+    });
+  });
+  
+    $scope.updatepass = function() {
+    AuthService.updatepass($scope.user).then(function(msg) {
+    }, function(errMsg) {
+      var alertPopup = $ionicPopup.alert({
+        title: 'Update failed!',
+        template: errMsg
+      });
+    });
+  };
 })
    
 .controller('reviewAndSubmitCtrl', function($scope) {
@@ -63,7 +85,8 @@ angular.module('app.controllers', [])
 .controller('RegisterCtrl', function($scope, AuthService, $ionicPopup, $state) {
   $scope.user = {
     name: '',
-    password: ''
+    password: '',
+    email:''
   };
 
   $scope.signup = function() {
