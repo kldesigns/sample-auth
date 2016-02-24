@@ -1,20 +1,28 @@
 <ion-view title="Clock On/Off">
     <ion-content overflow-scroll="true" padding="true" class="has-header">
-        <div>
+        <div ng-show="bundyState == 'off'">
             <p>You are currently clocked
-                <strong>off</strong>
+                <strong>{{bundyState}}</strong>
             </p>
-        </div>
+        
         <form class="list">
             <label class="item item-select">
                 <span class="input-label">Select Job</span>
                 <select>
-                    <option>Patterson Job</option>
-                    <option>Job 12354</option>
-                    <option>Office</option>
+                    <option enabled="false" default>Please select</option>
+                    <option ng-repeat="job in jobList" value={{job.number}}>{{job.client}} , {{job.number}}</option>
                 </select>
             </label>
             <a href="#/tabs/clocked_on" class="button button-stable button-block  icon-left ion-android-stopwatch">Clock On</a>
         </form>
+        </div>
+        <div ng-show="bundyState == 'on'">
+            <p>You are currently clocked
+                <strong>{{bundyState}}</strong> to job {{bundyJob}}</p>
+        
+        <form class="list">
+            <a href="#/tabs/bundy" class="button button-stable button-block  icon-left ion-android-stopwatch">Clock Off</a>
+        </form>
+        </div>
     </ion-content>
 </ion-view>

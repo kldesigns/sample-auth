@@ -19,7 +19,16 @@ angular.module('app.controllers', [])
   };
 })
 
-.controller('homeCtrl', function($scope, AuthService, API_ENDPOINT, $http, $state) {
+.controller('homeCtrl', function($scope, AuthService, API_ENDPOINT, $http, $state, AUTH_EVENTS) {
+  $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
+    AuthService.logout();
+    $state.go('login');
+    var alertPopup = $ionicPopup.alert({
+      title: 'Session Lost!',
+      template: 'Sorry, You have to login again.'
+    });
+  });
+  
   $scope.destroySession = function() {
     AuthService.logout();
   };
@@ -36,16 +45,46 @@ angular.module('app.controllers', [])
   };
 })
    
-.controller('clockOnOffCtrl', function($scope) {
-
+.controller('clockOnOffCtrl', function($scope, AUTH_EVENTS, AuthService, $state, $ionicPopup, $http, API_ENDPOINT, $log) {
+  $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
+    AuthService.logout();
+    $state.go('login');
+    var alertPopup = $ionicPopup.alert({
+      title: 'Session Lost!',
+      template: 'Sorry, You have to login again.'
+    });
+  });
+  $http.get(API_ENDPOINT.url + '/bundyinfo').then(function(result) {
+      $scope.bundyState = result.data.bundyState;
+      $scope.bundyJob = result.data.bundyJob;
+      $scope.jobList = result.data.jobList;
+    $log.info($scope.jobList);  
+    });
+    
+    
+    
 })
    
-.controller('travelLogBookCtrl', function($scope) {
-
+.controller('travelLogBookCtrl', function($scope, AUTH_EVENTS, AuthService, $state, $ionicPopup) {
+  $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
+    AuthService.logout();
+    $state.go('login');
+    var alertPopup = $ionicPopup.alert({
+      title: 'Session Lost!',
+      template: 'Sorry, You have to login again.'
+    });
+  });
 })
    
-.controller('clockOffCtrl', function($scope) {
-
+.controller('clockOffCtrl', function($scope, AUTH_EVENTS, AuthService, $state, $ionicPopup) {
+  $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
+    AuthService.logout();
+    $state.go('login');
+    var alertPopup = $ionicPopup.alert({
+      title: 'Session Lost!',
+      template: 'Sorry, You have to login again.'
+    });
+  });
 })
    
 .controller('changePasswordCtrl', function($scope, AuthService, AUTH_EVENTS, API_ENDPOINT, $http, $state, $ionicPopup) {
@@ -64,6 +103,11 @@ angular.module('app.controllers', [])
   
     $scope.updatepass = function() {
     AuthService.updatepass($scope.user).then(function(msg) {
+      var alertPopup = $ionicPopup.alert({
+        title: 'Update Successfull!',
+        template: msg
+      });
+      
     }, function(errMsg) {
       var alertPopup = $ionicPopup.alert({
         title: 'Update failed!',
@@ -73,12 +117,26 @@ angular.module('app.controllers', [])
   };
 })
    
-.controller('reviewAndSubmitCtrl', function($scope) {
-
+.controller('reviewAndSubmitCtrl', function($scope, AUTH_EVENTS, AuthService, $state, $ionicPopup) {
+  $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
+    AuthService.logout();
+    $state.go('login');
+    var alertPopup = $ionicPopup.alert({
+      title: 'Session Lost!',
+      template: 'Sorry, You have to login again.'
+    });
+  });
 })
    
-.controller('timesheetCtrl', function($scope) {
-
+.controller('timesheetCtrl', function($scope, AUTH_EVENTS, AuthService, $state,$ionicPopup) {
+  $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
+    AuthService.logout();
+    $state.go('login');
+    var alertPopup = $ionicPopup.alert({
+      title: 'Session Lost!',
+      template: 'Sorry, You have to login again.'
+    });
+  });
 })
 
 
@@ -105,7 +163,7 @@ angular.module('app.controllers', [])
   };
 })
 
-.controller('InsideCtrl', function($scope, AuthService, API_ENDPOINT, $http, $state) {
+.controller('InsideCtrl', function($scope, AuthService, API_ENDPOINT, $http, $state, AUTH_EVENTS) {
   $scope.destroySession = function() {
     AuthService.logout();
   };
