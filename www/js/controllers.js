@@ -45,7 +45,7 @@ angular.module('app.controllers', ['angularMoment', 'ngTable'])
   };
 })
    
-.controller('clockOnOffCtrl', function($scope, AUTH_EVENTS, AuthService, $state, $ionicPopup, $http, API_ENDPOINT, $log) {
+.controller('clockOnOffCtrl', function($scope, AUTH_EVENTS, AuthService, $state, $ionicPopup, $http, API_ENDPOINT, $cordovaGeolocation) {
   $scope.message = {
    time: new Date()
   };
