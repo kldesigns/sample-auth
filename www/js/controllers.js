@@ -1,4 +1,4 @@
-angular.module('app.controllers', ['angularMoment', 'ngTable'])
+angular.module('app.controllers', ['angularMoment'])
 
 .controller('loginCtrl', function($scope, AuthService, $ionicPopup, $state) {
   $scope.user = {
@@ -52,7 +52,9 @@ angular.module('app.controllers', ['angularMoment', 'ngTable'])
   $scope.bundyopts = {
     onoff: '',
     selectedJob: '',
-    locationcoord:'437',
+    locationcoord:'',
+    locationon:'',
+    locationoff:'',
     dateon:'',
     dateoff:''
   };
@@ -64,7 +66,7 @@ angular.module('app.controllers', ['angularMoment', 'ngTable'])
       template: 'Sorry, You have to login again.'
     });
   });
-   var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
       var lat  = position.coords.latitude;
       var long = position.coords.longitude;
@@ -88,7 +90,10 @@ angular.module('app.controllers', ['angularMoment', 'ngTable'])
    $scope.bundy = function (bundyopts) {
       if (bundyopts.onoff == "on"){
         bundyopts.dateon = new Date();
+        $scope.bundyopts.locationon = $scope.bundyopts.locationcoord;
+        
       } else {
+        $scope.bundyopts.locationoff = $scope.bundyopts.locationcoord;
         bundyopts.dateoff = new Date();
       }
       $http.post(API_ENDPOINT.url + '/bundy', bundyopts).then(function(result) {
