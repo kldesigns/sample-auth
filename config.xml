@@ -2,7 +2,7 @@
 <widget id="com.ionicframework.auth-test" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap = "http://phonegap.com/ns/1.0" versionCode =   "1">
   <name>rest-auth</name>
   <description>
-        A Kiwilime Designs Sample Project
+        Kiwilime Designs Timesheets and Travel Log
     </description>
   <author email="doug.cabot@kiwilimedesigns.com" href="http://kiwilimedesigns.com/">
       Kiwilime Designs
@@ -14,10 +14,11 @@
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
+  <plugin name="cordova-plugin-geolocation" spec="1.0.1" source="pgb" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
-<feature name="debug-server" required="true">
+  <feature name="debug-server" required="true">
     <param name="domain" value="http://46.101.60.116:8081"/>
     <param name="key" value="rest-auth"/>
   </feature>

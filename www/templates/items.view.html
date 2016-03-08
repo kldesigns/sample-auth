@@ -1,0 +1,49 @@
+<ion-view title="Timesheet">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <div class="list">
+            <form id="search">
+                <label class="item item-input">From:  
+                <input type="text" placeholder="Enter Date From" ng-model="searchDate.startDate">
+                </label>
+                <label class="item item-input">To:  
+                <input type="text" placeholder="Enter Date To" ng-model="searchDate.finishDate">
+                </label>
+                <button class="button button-stable button-icon button-small icon ion-ios-search" ng-click="rerun('searchDate')">Search</button>
+               <!--<a ui-sref="tabsController.items({searchDate.startDate, searchDate.finishDate})"><button class="button button-stable button-icon button-small icon ion-ios-search">Search</button></a>            
+            --></form>
+        </div>
+        <div>
+    <div crud-grid
+         column-button-click='itemsCtrl.gridOnButtonClick'
+         initialized='itemsCtrl.gridOnInitialized'
+         server-url='{{itemsCtrl.serverUrl}}'
+         columns-definition='[
+         {
+            "binding"       :"_id",
+            "type"          :"text",
+            "required"      :"true",
+            "hidden"        :"true"
+         },
+         {
+            "binding"       :"dateon",
+            "header"        :"Clock On",
+            "type"          :"date",
+            "required"      :"true"
+         },
+         {
+            "binding"       :"dateoff",
+            "header"        :"Clock Off",
+            "type"          :"date",
+            "required"      :"false"
+         },
+         {
+            "binding"       :"jobnumber",
+            "header"        :"Job Number",
+            "type"          :"text",
+            "required"      :"false"
+         }
+         ]'>
+    </div>
+</div>
+ </ion-content>
+</ion-view>
