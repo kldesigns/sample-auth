@@ -21,7 +21,7 @@
         <div ng-show="bundyState == 'on'">
             <p>You are currently clocked
                 <strong>{{bundyState}}</strong> to job {{bundyJob}}</p>
-        
+        <p><span>Location: {{bundyopts.locationcoord}}</span></p>
         <form class="list">
             <button class="button button-stable button-block  icon-left ion-android-stopwatch" ng-click='bundy(bundyopts)'>Clock Off</button>
         </form>
