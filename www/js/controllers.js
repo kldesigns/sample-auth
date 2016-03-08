@@ -52,7 +52,7 @@ angular.module('app.controllers', ['angularMoment', 'ngTable'])
   $scope.bundyopts = {
     onoff: '',
     selectedJob: '',
-    locationcoord:'43789789.4732890472389.743892748937.742389789',
+    locationcoord:'437',
     dateon:'',
     dateoff:''
   };
@@ -64,6 +64,15 @@ angular.module('app.controllers', ['angularMoment', 'ngTable'])
       template: 'Sorry, You have to login again.'
     });
   });
+   var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+      var lat  = position.coords.latitude;
+      var long = position.coords.longitude;
+      $scope.bundyopts.locationcoord = lat + "," + long;
+    }, function(err) {
+      throw(err);
+    });
+    
   $http.get(API_ENDPOINT.url + '/bundyinfo').then(function(result) {
       $scope.bundyState = result.data.bundyState;
       $scope.bundyJob = result.data.bundyJob;

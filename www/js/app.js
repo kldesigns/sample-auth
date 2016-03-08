@@ -1,4 +1,4 @@
-angular.module('app', ['ionic', 'app.constants', 'app.controllers', 'app.routes', 'app.services', 'app.directives','angularMoment', 'ui.bootstrap','ui.bootstrap.datetimepicker', 'ngResource', 'ngTable'])
+angular.module('app', ['ionic', 'app.constants', 'app.controllers', 'app.routes', 'app.services', 'app.directives','angularMoment', 'ui.bootstrap','ui.bootstrap.datetimepicker', 'ngResource', 'ngCordova'])
 
 .filter('customUserDateFilter', function($filter) {
     return function(values, dateString) {
