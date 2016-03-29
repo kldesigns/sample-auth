@@ -185,7 +185,7 @@ angular.module('app.services', [])
 
 
     // Internal controller used by the modal window
-    function _modalWindowController($scope, $modalInstance, title, body) {
+    function _modalWindowController($scope, $uibModalInstance, title, body) {
         $scope.title = "";
         $scope.body = "";
 
@@ -198,11 +198,11 @@ angular.module('app.services', [])
         }
 
         $scope.confirm = function () {
-            $modalInstance.close();
+            $uibModalInstance.close();
         };
 
         $scope.cancel = function () {
-            $modalInstance.dismiss();
+            $uibModalInstance.dismiss();
         };
     }
 
