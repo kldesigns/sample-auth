@@ -223,6 +223,12 @@ angular.module('app.services', [])
             }
             toastr.success("Success. " + text);
         },
+        info: function (text) {
+            if (text === undefined) {
+                text = '';
+            }
+            toastr.info("Info. " + text);
+        },
         error: function (text) {
             if (text === undefined) {
                 text = '';
